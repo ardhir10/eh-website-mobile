@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Iceland', sans-serif;
+    }
+
+    :root {
+        /* Primary Colors */
+        --cyan-1: #009ee3;
+        --cyan-2: #00b8e3;
+        --cyan-3: #00d7e3;
+        --cyan-4: #00f6e3;
+
+        /* Magenta */
+        --magenta-1: #e5007d;
+        --magenta-2: #a8005c;
+        --magenta-3: #7b0040;
+      
+        /* Gray Shades */
+        --winter-gray-1: #e6ecf0;
+        --winter-gray-2: #c3ced5;
+        --winter-gray-3: #8fa2ac;
+        --winter-gray-4: #506671;
+      
+        /* Sun Yellow */
+        --sun-yellow-1: #ffe596;
+        --sun-yellow-2: #ffcc00;
+      
+        /* Red Orange */
+        --red-orange-1: #fbcdab;
+        --red-orange-2: #e94c0a;
+        --red-orange-3: #d50c2f;
+        --red-orange-4: #652e2b;
+      
+        /* May Green */
+        --may-green-1: #c2ddaf;
+        --may-green-2: #54a931;
+        --may-green-3: #486f4f;
+    }
+}
+
+@layer components {
+    .input {
+        @apply tw-mt-1 tw-w-full tw-py-[0.3rem] tw-px-2 tw-border tw-border-slate-500 tw-rounded-md tw-bg-transparent tw-text-white tw-placeholder-gray-300;
+    }
+    .input:focus {
+        @apply tw-outline-none tw-ring-0 tw-border-[#7367F0];
+    }
+    .input:hover {
+        @apply tw-border-gray-400;
+    }
+    .input:focus:hover {
+        @apply tw-border-[#7367F0];
+    }
+    .input::placeholder {
+        @apply tw-text-[#5E6692] tw-text-sm;
+    }
+    .input:focus::placeholder {
+        @apply tw-pl-1 tw-transition-all tw-duration-300;
+    }
+    .input:not(:focus)::placeholder {
+        @apply tw-pl-0 tw-transition-all tw-duration-300;
+    }
+
+    .checkbox {
+        @apply tw-size-5 tw-border-2 tw-border-gray-600 tw-rounded-md tw-bg-transparent tw-text-white tw-placeholder-gray-300;
+    }
+
+    .checkbox:checked {
+        @apply tw-bg-[#7367F0] tw-border-[#7367F0] tw-ring-0 tw-outline-none tw-appearance-none;
+    }
+
+    .checkbox:focus {
+        @apply tw-outline-none !tw-ring-0 tw-border-transparent !tw-appearance-none;
+    }
+
+    .badge {
+        @apply tw-flex tw-items-center tw-gap-0.5 tw-text-red-500 tw-text-xs;
+    }
+
+    .badge-icon {
+        @apply tw-flex tw-items-center tw-justify-center tw-size-4 tw-p-0.5 tw-bg-red-500 tw-text-white tw-rounded-full;
+    }
+
+    .badge-icon svg {
+        @apply tw-size-4;
+    }
+
+    .badge-icon svg path {
+        @apply tw-stroke-white;
+    }
+
+    .badge-icon svg circle {
+        @apply tw-stroke-white;
+    }
+
+    .badge-icon svg line {
+        @apply tw-stroke-white;
+    }
+
+    .badge-icon svg rect {
+        @apply tw-stroke-white;
+    }
+
+    .badge-icon svg polygon {
+        @apply tw-stroke-white;
+    }
+
+    .badge-icon svg ellipse {
+        @apply tw-stroke-white;
+    }
+
+    /* custom scroll bar */
+    ::-webkit-scrollbar {
+        @apply tw-w-2 tw-h-2;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply tw-bg-gray-400 tw-rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply tw-bg-gray-500;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply tw-bg-gray-200;
+    }
+
+    ::-webkit-scrollbar-corner {
+        @apply tw-bg-transparent;
+    }
+
+    ::-webkit-scrollbar-button {
+        @apply tw-bg-transparent;
+    }
+
+    ::-webkit-scrollbar-track-piece {
+        @apply tw-bg-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        @apply tw-bg-gray-500;
+    }
+
+    /* hidden scroll bar */
+    .tw-scrollbar-none::-webkit-scrollbar {
+        @apply tw-hidden;
+    }
+}
+
+@layer utilities {
+    .iceland-regular {
+        font-family: "Iceland", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* From Uiverse.io by alexruix */ 
+    .loader {
+        width: 48px;
+        height: 48px;
+        margin: auto;
+        position: relative;
+    }
+    
+    .loader:before {
+        content: '';
+        width: 48px;
+        height: 5px;
+        background: #f0808050;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        border-radius: 50%;
+        animation: shadow324 0.5s linear infinite;
+    }
+    
+    .loader:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: #F05252;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 4px;
+        animation: jump7456 0.5s linear infinite;
+    }
+    
+    @keyframes jump7456 {
+        15% {
+        border-bottom-right-radius: 3px;
+        }
+    
+        25% {
+        transform: translateY(9px) rotate(22.5deg);
+        }
+    
+        50% {
+        transform: translateY(18px) scale(1, .9) rotate(45deg);
+        border-bottom-right-radius: 40px;
+        }
+    
+        75% {
+        transform: translateY(9px) rotate(67.5deg);
+        }
+    
+        100% {
+        transform: translateY(0) rotate(90deg);
+        }
+    }
+    
+    @keyframes shadow324 {
+    
+        0%,
+        100% {
+        transform: scale(1, 1);
+        }
+    
+        50% {
+        transform: scale(1.2, 1);
+        }
+    }
+}
