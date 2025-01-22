@@ -41,7 +41,16 @@
                 <div class="ml-3 relative" x-data="{ isOpen: false }">
                     <div class="flex items-center cursor-pointer" @click="isOpen = !isOpen">
                         <span class="text-gray-700 mr-2">{{ auth()->user()->name }}</span>
-                        <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('/assets/images/avatars/1.gif') }}" alt="User avatar">
+                        @if(auth()->user()->avatar)
+                            <img class="h-8 w-8 rounded-full object-cover" src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="User avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                            <div class="h-8 w-8 rounded-full bg-gray-200 items-center justify-center hidden">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                        @else
+                            <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                        @endif
                     </div>
 
                     <!-- Dropdown menu -->
@@ -76,7 +85,16 @@
         <div class="pt-4 pb-3 border-t border-gray-200">
             <div class="flex items-center px-4">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('/assets/images/avatars/1.gif') }}" alt="User avatar">
+                    @if(auth()->user()->avatar)
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="User avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 items-center justify-center hidden">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                    @else
+                        <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                    @endif
                 </div>
                 <div class="ml-3">
                     <div class="text-base font-medium text-gray-800">{{ auth()->user()->name }}</div>
