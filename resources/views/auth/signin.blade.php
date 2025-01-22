@@ -15,16 +15,16 @@
     @endif
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6g0g5z5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e" crossorigin="anonymous">
 </head>
-<body class="tw-bg-[#25293C] tw-flex tw-justify-center tw-items-center tw-h-screen">
-    <div class="tw-w-full tw-max-w-sm tw-bg-[#2F3349] tw-rounded-lg tw-p-8 tw-shadow-lg">
-        <div class="tw-mb-4 tw-text-center">
-            <h2 class="tw-text-2xl tw-text-white tw-font-bold">Welcome! 👋</h2>
-            <p class="tw-text-gray-300">Please sign-in to your account and start the adventure</p>
+<body class="bg-[#25293C] flex justify-center items-center h-screen">
+    <div class="w-full max-w-sm bg-[#2F3349] rounded-lg p-8 shadow-lg">
+        <div class="mb-4 text-center">
+            <h2 class="text-2xl text-white font-bold">Welcome! 👋</h2>
+            <p class="text-gray-300">Please sign-in to your account and start the adventure</p>
         </div>
-        <form action="/login" method="POST" class="tw-space-y-6">
+        <form action="/login" method="POST" class="space-y-6">
             @csrf
             <div>
-                <label for="email" class="tw-block tw-text-sm tw-font-medium tw-text-gray-300">Email or Username</label>
+                <label for="email" class="block text-sm font-medium text-gray-300">Email or Username</label>
                 <input 
                     type="email" 
                     id="email" 
@@ -34,8 +34,8 @@
                     class="input"
                 >
             </div>
-            <div class="tw-relative">
-                <label for="password" class="tw-block tw-text-sm tw-font-medium tw-text-gray-300">Password</label>
+            <div class="relative">
+                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
                 <input 
                     type="password" 
                     id="password" 
@@ -46,31 +46,31 @@
                 >
                 <a 
                     href="#" 
-                    class="tw-absolute tw-top-0 tw-right-0 tw-pr-3 tw-flex tw-items-center tw-text-xs tw-text-blue-300 hover:tw-text-blue-400"
+                    class="absolute top-0 right-0 pr-3 flex items-center text-xs text-blue-300 hover:text-blue-400"
                 >
                     Forgot Password?
                 </a>
             </div>
-            <div class="tw-flex tw-items-center tw-justify-between">
-                <div class="tw-flex tw-items-center">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
                     <input id="remember_me" name="remember_me" type="checkbox" class="checkbox">
-                    <label for="remember_me" class="tw-ml-2 tw-block tw-text-sm tw-text-gray-300">Remember Me</label>
+                    <label for="remember_me" class="ml-2 block text-sm text-gray-300">Remember Me</label>
                 </div>
             </div>
             <button 
                 type="submit" 
-                class="tw-w-full tw-flex tw-justify-center tw-py-2 tw-px-4 tw-border tw-border-transparent tw-rounded-md tw-shadow-sm tw-text-sm tw-font-medium tw-text-white tw-bg-[#7367F0] hover:tw-bg-[#7367F0]/80"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#7367F0] hover:bg-[#7367F0]/80"
             >
                 Sign in
             </button>
         </form>
-        <div class="tw-mt-6 tw-text-center tw-text-sm tw-text-gray-300">
-            New on our platform? <a href="#" class="tw-text-blue-300 hover:tw-text-blue-400 tw-font-bold">Create an account</a>
+        <div class="mt-6 text-center text-sm text-gray-300">
+            New on our platform? <a href="#" class="text-blue-300 hover:text-blue-400 font-bold">Create an account</a>
         </div>
-        <div class="tw-mt-4 tw-flex tw-justify-center tw-gap-4">
-            <a href="#" class="tw-text-blue-300"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="tw-text-blue-300"><i class="fab fa-google"></i></a>
-            <a href="#" class="tw-text-blue-300"><i class="fab fa-twitter"></i></a>
+        <div class="mt-4 flex justify-center gap-4">
+            <a href="#" class="text-blue-300"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-blue-300"><i class="fab fa-google"></i></a>
+            <a href="#" class="text-blue-300"><i class="fab fa-twitter"></i></a>
         </div>
     </div>
 </body>

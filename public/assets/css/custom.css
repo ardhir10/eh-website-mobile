@@ -1,0 +1,105 @@
+   /* DATATABLE CUSTOM BY PATERN */
+   .dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #357AA6 !important;
+    border-radius: 8px;
+    padding: 6px 15px !important;
+}
+.dataTables_length select {
+    border: 1px solid #357AA6 !important;
+    border-radius: 8px;
+    padding: 6px 15px !important;
+}
+
+.datatables thead {
+   border-radius: 10px !important;
+}
+
+.datatables thead tr {
+   background:#357AA6 !important;
+}
+
+
+.datatables thead tr th:first-child {
+    border-top-left-radius:  10px !important;
+    border-bottom-left-radius:  10px !important;
+}
+.datatables thead tr th:first-child {
+    border-top-left-radius:  10px !important;
+    border-bottom-left-radius:  10px !important;
+}
+.datatables thead tr th:last-child {
+    border-top-right-radius:  10px !important;
+    border-bottom-right-radius:  10px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    border: 1px solid #357AA6 !important;
+    color: white !important;
+    background:#357AA6 !important;
+    border-radius: 28px;
+    animation: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: 1px solid #357AA6 !important;
+    color: white !important;
+    background:#357AA6 !important;
+    border-radius: 28px;
+    animation: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ /* DATATABLE */
+ table.dataTable.no-footer{
+    border-bottom:1px solid #eff0f2;
+}
+.datatables{
+    font-size:16px !important;
+}
+.tr-head {
+    background: #357AA6 !important;
+    color: white;
+}
+
+.tr-head th {
+    border-bottom: 0px !important;
+}
+
+.dataTables_length select {
+    border: 1px solid #8b8b8b;
+    border-radius: 8px;
+    padding: 6px 15px !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #8b8b8b;
+    border-radius: 8px;
+    padding: 6px 15px !important;
+}
+
+.datatables thead {
+    border-radius: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_filter{
+    padding: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+table.dataTable thead th, table.dataTable thead td{
+    border-bottom: 1px solid #357AA6 !important;
+    border-top: 1px solid #357AA6 !important;
+}
+
+/* Add striped rows to DataTable */
+.datatables tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.datatables tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}

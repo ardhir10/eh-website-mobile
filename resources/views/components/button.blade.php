@@ -8,26 +8,26 @@
 
 @php
     // Base classes
-    $baseClasses = 'tw-inline-flex tw-items-center tw-justify-center tw-font-medium tw-rounded-xl tw-transition-all tw-duration-200 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 disabled:tw-opacity-50 disabled:tw-cursor-not-allowed';
+    $baseClasses = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
     // Size classes
     $sizeClasses = match($size) {
-        'sm' => 'tw-px-3 tw-py-1.5 tw-text-xs',
-        'lg' => 'tw-px-6 tw-py-3 tw-text-base',
-        default => 'tw-px-4 tw-py-2 tw-text-sm', // md
+        'sm' => 'px-3 py-1.5 text-xs',
+        'lg' => 'px-6 py-3 text-base',
+        default => 'px-4 py-2 text-sm', // md
     };
 
     // Variant classes
     $variantClasses = match($variant) {
-        'secondary' => 'tw-bg-white hover:tw-bg-white/80 tw-text-gray-700 tw-px-4 tw-py-2 tw-rounded-xl tw-text-sm tw-transition-all tw-duration-200 tw-outline-none focus:tw-outline-none focus:tw-ring-0 focus:tw-ring-offset-0 focus:tw-ring-transparent focus:tw-border-transparent',
-        'danger' => 'tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-px-4 tw-py-2 tw-rounded-xl tw-text-sm tw-transition-all tw-duration-200 tw-outline-none focus:tw-outline-none focus:tw-ring-0 focus:tw-ring-offset-0 focus:tw-ring-transparent focus:tw-border-transparent',
-        'success' => 'tw-bg-green-500 hover:tw-bg-green-600 tw-text-white tw-px-4 tw-py-2 tw-rounded-xl tw-text-sm tw-transition-all tw-duration-200 tw-outline-none focus:tw-outline-none focus:tw-ring-0 focus:tw-ring-offset-0 focus:tw-ring-transparent focus:tw-border-transparent',
-        'warning' => 'tw-bg-yellow-500 hover:tw-bg-yellow-600 tw-text-white tw-px-4 tw-py-2 tw-rounded-xl tw-text-sm tw-transition-all tw-duration-200 tw-outline-none focus:tw-outline-none focus:tw-ring-0 focus:tw-ring-offset-0 focus:tw-ring-transparent focus:tw-border-transparent',
-        default => 'tw-w-full sm:tw-w-auto tw-bg-red-500 hover:tw-bg-red-600 tw-text-white tw-px-4 tw-py-2 tw-rounded-xl tw-text-sm tw-transition-all tw-duration-200 tw-outline-none focus:tw-outline-none focus:tw-ring-0 focus:tw-ring-offset-0 focus:tw-ring-transparent focus:tw-border-transparent', // primary
+        'secondary' => 'bg-white hover:bg-white/80 text-gray-700 px-4 py-2 rounded-xl text-sm transition-all duration-200 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-transparent focus:border-transparent',
+        'danger' => 'bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm transition-all duration-200 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-transparent focus:border-transparent',
+        'success' => 'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl text-sm transition-all duration-200 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-transparent focus:border-transparent',
+        'warning' => 'bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-xl text-sm transition-all duration-200 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-transparent focus:border-transparent',
+        default => 'w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm transition-all duration-200 outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-transparent focus:border-transparent', // primary
     };
 
     // Width classes
-    $widthClasses = $fullWidth ? 'tw-w-full' : '';
+    $widthClasses = $fullWidth ? 'w-full' : '';
 
     $classes = "{$baseClasses} {$sizeClasses} {$variantClasses} {$widthClasses}";
 @endphp

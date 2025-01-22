@@ -1,18 +1,18 @@
 @props([
     'align' => 'right',
     'width' => '100', // width dalam pixel
-    'contentClasses' => 'tw-py-1',
+    'contentClasses' => 'py-1',
 ])
 
 @php
 $alignmentClasses = match ($align) {
-    'left' => 'tw-left-0 tw-origin-top-left',
-    'right' => 'tw-right-0 tw-origin-top-right',
-    default => 'tw-right-0 tw-origin-top-right',
+    'left' => 'left-0 origin-top-left',
+    'right' => 'right-0 origin-top-right',
+    default => 'right-0 origin-top-right',
 };
 @endphp
 
-<div class="tw-relative" x-data="{ open: false }">
+<div class="relative" x-data="{ open: false }">
     <!-- Trigger -->
     <div @click="open = !open">
         {{ $trigger }}
@@ -21,13 +21,13 @@ $alignmentClasses = match ($align) {
     <!-- Dropdown Content -->
     <div x-show="open"
          @click.away="open = false"
-         x-transition:enter="tw-transition-all tw-ease-out tw-duration-300"
-         x-transition:enter-start="tw-opacity-0 tw-scale-95 tw-translate-y-[-10px]"
-         x-transition:enter-end="tw-opacity-100 tw-scale-100 tw-translate-y-0"
-         x-transition:leave="tw-transition-all tw-ease-in tw-duration-200"
-         x-transition:leave-start="tw-opacity-100 tw-scale-100 tw-translate-y-0"
-         x-transition:leave-end="tw-opacity-0 tw-scale-95 tw-translate-y-[-10px]"
-         class="tw-absolute {{ $alignmentClasses }} tw-mt-2 tw-bg-white tw-rounded-xl tw-shadow-lg tw-border tw-border-gray-100 tw-z-10"
+         x-transition:enter="transition-all ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-95 translate-y-[-10px]"
+         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+         x-transition:leave="transition-all ease-in duration-200"
+         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+         x-transition:leave-end="opacity-0 scale-95 translate-y-[-10px]"
+         class="absolute {{ $alignmentClasses }} mt-2 bg-white rounded-xl shadow-lg border border-gray-100 z-10"
          :style="{ width: '{{ $width }}px' }"
          x-cloak>
         <div class="{{ $contentClasses }}">

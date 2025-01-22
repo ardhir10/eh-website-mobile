@@ -7,7 +7,7 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        font-family: 'Iceland', sans-serif;
+        /* font-family: '', sans-serif; */
     }
 
     :root {
@@ -47,111 +47,111 @@
 
 @layer components {
     .input {
-        @apply tw-mt-1 tw-w-full tw-py-[0.3rem] tw-px-2 tw-border tw-border-slate-500 tw-rounded-md tw-bg-transparent tw-text-white tw-placeholder-gray-300;
+        @apply mt-1 w-full py-[0.3rem] px-2 border border-slate-500 rounded-md bg-transparent text-white placeholder-gray-300;
     }
     .input:focus {
-        @apply tw-outline-none tw-ring-0 tw-border-[#7367F0];
+        @apply outline-none ring-0 border-[#7367F0];
     }
     .input:hover {
-        @apply tw-border-gray-400;
+        @apply border-gray-400;
     }
     .input:focus:hover {
-        @apply tw-border-[#7367F0];
+        @apply border-[#7367F0];
     }
     .input::placeholder {
-        @apply tw-text-[#5E6692] tw-text-sm;
+        @apply text-[#5E6692] text-sm;
     }
     .input:focus::placeholder {
-        @apply tw-pl-1 tw-transition-all tw-duration-300;
+        @apply pl-1 transition-all duration-300;
     }
     .input:not(:focus)::placeholder {
-        @apply tw-pl-0 tw-transition-all tw-duration-300;
+        @apply pl-0 transition-all duration-300;
     }
 
     .checkbox {
-        @apply tw-size-5 tw-border-2 tw-border-gray-600 tw-rounded-md tw-bg-transparent tw-text-white tw-placeholder-gray-300;
+        @apply size-5 border-2 border-gray-600 rounded-md bg-transparent text-white placeholder-gray-300;
     }
 
     .checkbox:checked {
-        @apply tw-bg-[#7367F0] tw-border-[#7367F0] tw-ring-0 tw-outline-none tw-appearance-none;
+        @apply bg-[#7367F0] border-[#7367F0] ring-0 outline-none appearance-none;
     }
 
     .checkbox:focus {
-        @apply tw-outline-none !tw-ring-0 tw-border-transparent !tw-appearance-none;
+        @apply outline-none !ring-0 border-transparent !appearance-none;
     }
 
     .badge {
-        @apply tw-flex tw-items-center tw-gap-0.5 tw-text-red-500 tw-text-xs;
+        @apply flex items-center gap-0.5 text-red-500 text-xs;
     }
 
     .badge-icon {
-        @apply tw-flex tw-items-center tw-justify-center tw-size-4 tw-p-0.5 tw-bg-red-500 tw-text-white tw-rounded-full;
+        @apply flex items-center justify-center size-4 p-0.5 bg-red-500 text-white rounded-full;
     }
 
     .badge-icon svg {
-        @apply tw-size-4;
+        @apply size-4;
     }
 
     .badge-icon svg path {
-        @apply tw-stroke-white;
+        @apply stroke-white;
     }
 
     .badge-icon svg circle {
-        @apply tw-stroke-white;
+        @apply stroke-white;
     }
 
     .badge-icon svg line {
-        @apply tw-stroke-white;
+        @apply stroke-white;
     }
 
     .badge-icon svg rect {
-        @apply tw-stroke-white;
+        @apply stroke-white;
     }
 
     .badge-icon svg polygon {
-        @apply tw-stroke-white;
+        @apply stroke-white;
     }
 
     .badge-icon svg ellipse {
-        @apply tw-stroke-white;
+        @apply stroke-white;
     }
 
     /* custom scroll bar */
     ::-webkit-scrollbar {
-        @apply tw-w-2 tw-h-2;
+        @apply w-2 h-2;
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply tw-bg-gray-400 tw-rounded-full;
+        @apply bg-gray-400 rounded-full;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        @apply tw-bg-gray-500;
+        @apply bg-gray-500;
     }
 
     ::-webkit-scrollbar-track {
-        @apply tw-bg-gray-200;
+        @apply bg-gray-200;
     }
 
     ::-webkit-scrollbar-corner {
-        @apply tw-bg-transparent;
+        @apply bg-transparent;
     }
 
     ::-webkit-scrollbar-button {
-        @apply tw-bg-transparent;
+        @apply bg-transparent;
     }
 
     ::-webkit-scrollbar-track-piece {
-        @apply tw-bg-transparent;
+        @apply bg-transparent;
     }
 
     ::-webkit-scrollbar-thumb:active {
-        @apply tw-bg-gray-500;
+        @apply bg-gray-500;
     }
 
     /* hidden scroll bar */
-    .tw-scrollbar-none::-webkit-scrollbar {
-        @apply tw-hidden;
+    .scrollbar-none::-webkit-scrollbar {
+        @apply hidden;
     }
 }
 
@@ -227,5 +227,33 @@
         50% {
         transform: scale(1.2, 1);
         }
+    }
+
+        /* Color Patern */
+    .bg-primary{
+        background: #4EABE9 !important;
+    }
+    .text-primary{
+        color: #4EABE9 !important;
+    }
+
+    .bg-magenta-1{
+        background: #e5007d !important;
+    }
+    .text-magenta-1{
+        color: #e5007d !important;
+    }
+
+    .bg-magenta-2{
+        background: #A8005C !important;
+    }
+    .text-magenta-2{
+        color: #A8005C !important;
+    }
+    .bg-magenta-3{
+        background: #70133F !important;
+    }
+    .text-magenta-3{
+        color: #70133F !important;
     }
 }

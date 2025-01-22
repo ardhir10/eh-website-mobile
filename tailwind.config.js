@@ -19,5 +19,4 @@ export default {
     plugins: [
         require('flowbite/plugin')
     ],
-    prefix: 'tw-', // Menambahkan prefix tw- pada Tailwind
 };

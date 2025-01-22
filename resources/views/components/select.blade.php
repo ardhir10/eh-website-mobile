@@ -7,14 +7,14 @@
     'selected' => ''
 ])
 
-<div class="tw-mb-4">
+<div class="mb-4">
     @if($label)
-        <label class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-1">{{ $label }}</label>
+        <label class="block text-sm font-medium text-gray-700 mb-1">{{ $label }}</label>
     @endif
 
     <select 
         name="{{ $name }}"
-        {{ $attributes->merge(['class' => 'tw-w-full tw-rounded-lg tw-border tw-bg-white tw-px-3 tw-py-2 tw-text-sm tw-outline-none focus:tw-ring-2 focus:tw-ring-blue-500/20 ' . ($error ? 'tw-border-red-500' : 'tw-border-gray-300')]) }}
+        {{ $attributes->merge(['class' => 'w-full rounded-lg border bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500/20 ' . ($error ? 'border-red-500' : 'border-gray-300')]) }}
     >
         @if($placeholder)
             <option value="">{{ $placeholder }}</option>
@@ -28,6 +28,6 @@
     </select>
 
     @if($error)
-        <p class="tw-mt-1 tw-text-sm tw-text-red-500">{{ $error }}</p>
+        <p class="mt-1 text-sm text-red-500">{{ $error }}</p>
     @endif
 </div> 

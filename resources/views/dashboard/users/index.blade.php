@@ -1,29 +1,29 @@
 @extends('dashboard.layouts.app')
 
 @section('content')
-<div class="tw-p-6" x-data="{ drawerOpen: false, startY: 0, currentHeight: 0, isDragging: false, initialHeight: 0 }">
+<div class="p-6" x-data="{ drawerOpen: false, startY: 0, currentHeight: 0, isDragging: false, initialHeight: 0 }">
     <!-- Header -->
-    <div class="tw-mb-6">
-        <h1 class="tw-text-2xl tw-font-semibold tw-text-gray-900">Users Management</h1>
-        <p class="tw-mt-1 tw-text-sm tw-text-gray-600">Manage all users in your system</p>
+    <div class="mb-6">
+        <h1 class="text-2xl font-semibold text-gray-900">Users Management</h1>
+        <p class="mt-1 text-sm text-gray-600">Manage all users in your system</p>
     </div>
 
     <!-- Action Buttons -->
-    <div class="tw-mb-6 tw-flex tw-flex-col sm:tw-flex-row tw-justify-between tw-items-start sm:tw-items-center tw-gap-4 sm:tw-gap-2">
-        <div class="tw-flex tw-flex-wrap tw-gap-2 max-sm:tw-w-full">
+    <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-2">
+        <div class="flex flex-wrap gap-2 max-sm:w-full">
             <x-button 
                 variant="primary"
                 @click="drawerOpen = true"
-                class="max-sm:tw-w-full"
+                class="max-sm:w-full"
             >
                 Add New User
             </x-button>
 
             <x-dropdown align="left" width="200">
                 <x-slot name="trigger">
-                    <x-button variant="secondary" class="max-sm:tw-w-full">
+                    <x-button variant="secondary" class="max-sm:w-full">
                         <span>Export Users</span>
-                        <svg class="tw-w-4 tw-h-4 tw-ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </x-button>
@@ -51,56 +51,56 @@
     </div>
 
     <!-- Users Table -->
-    <div class="tw-bg-white tw-rounded-xl tw-shadow-sm tw-border tw-border-gray-100">
-        <div class="tw-overflow-x-auto tw-w-full tw-rounded-xl">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="overflow-x-auto w-full rounded-xl">
             @if($users->count() > 0)
-                <table class="tw-w-full tw-text-sm tw-text-left tw-min-w-[800px]" id="users-table">
-                    <thead class="tw-bg-gray-50 tw-text-gray-600">
+                <table class="w-full text-sm text-left min-w-[800px]" id="users-table">
+                    <thead class="bg-gray-50 text-gray-600">
                         <tr>
-                            <th class="tw-px-4 tw-py-3 tw-font-medium">No</th>
-                            <th class="tw-px-4 tw-py-3 tw-font-medium">Name</th>
-                            <th class="tw-px-4 tw-py-3 tw-font-medium">Email</th>
-                            <th class="tw-px-4 tw-py-3 tw-font-medium">Status</th>
-                            <th class="tw-px-4 tw-py-3 tw-font-medium">Joined Date</th>
-                            <th class="tw-px-4 tw-py-3 tw-font-medium">Actions</th>
+                            <th class="px-4 py-3 font-medium">No</th>
+                            <th class="px-4 py-3 font-medium">Name</th>
+                            <th class="px-4 py-3 font-medium">Email</th>
+                            <th class="px-4 py-3 font-medium">Status</th>
+                            <th class="px-4 py-3 font-medium">Joined Date</th>
+                            <th class="px-4 py-3 font-medium">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="tw-divide-y tw-divide-gray-100 tw-overflow-hidden" id="users-table-body">
+                    <tbody class="divide-y divide-gray-100 overflow-hidden" id="users-table-body">
                         @foreach($users as $user)
-                        <tr class="hover:tw-bg-gray-50">
-                            <td class="tw-px-2 sm:tw-px-4 tw-py-3">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-2 sm:px-4 py-3">
                                 {{ $loop->iteration }}
                             </td>
-                            <td class="tw-px-2 sm:tw-px-4 tw-py-3">
-                                <div class="tw-flex tw-items-center tw-gap-2 sm:tw-gap-3">
+                            <td class="px-2 sm:px-4 py-3">
+                                <div class="flex items-center gap-2 sm:gap-3">
                                     <img src="{{ asset('/assets/images/avatars/1.gif') }}" 
                                          alt="{{ $user->name }}" 
-                                         class="tw-size-6 sm:tw-size-8 tw-rounded-full">
+                                         class="size-6 sm:size-8 rounded-full">
                                     <div>
-                                        <p class="tw-font-medium tw-text-gray-700 tw-text-xs sm:tw-text-sm">{{ $user->name }}</p>
-                                        <p class="tw-text-xs tw-text-gray-500 tw-hidden sm:tw-block">ID: #{{ $user->id }}</p>
+                                        <p class="font-medium text-gray-700 text-xs sm:text-sm">{{ $user->name }}</p>
+                                        <p class="text-xs text-gray-500 hidden sm:block">ID: #{{ $user->id }}</p>
                                     </div>
                                 </div>
                             </td>
-                            <td class="tw-px-2 sm:tw-px-4 tw-py-3 tw-text-gray-600 tw-text-xs sm:tw-text-sm">{{ $user->email }}</td>
-                            <td class="tw-px-4 tw-py-3">
-                                <span class="tw-px-2 tw-py-1 tw-text-xs tw-font-medium tw-rounded-full tw-bg-green-100 tw-text-green-700">
+                            <td class="px-2 sm:px-4 py-3 text-gray-600 text-xs sm:text-sm">{{ $user->email }}</td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
                                     Active
                                 </span>
                             </td>
-                            <td class="tw-px-4 tw-py-3 tw-text-gray-600">
+                            <td class="px-4 py-3 text-gray-600">
                                 {{ $user->created_at->format('M d, Y') }}
                             </td>
-                            <td class="tw-px-4 tw-py-3">
-                                <div class="tw-flex tw-items-center tw-gap-2">
-                                    <button class="tw-p-1 tw-text-gray-500 hover:tw-text-gray-700 tw-transition-colors">
-                                        <svg class="tw-size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-2">
+                                    <button class="p-1 text-gray-500 hover:text-gray-700 transition-colors">
+                                        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                                         </svg>
                                     </button>
                                     <button data-delete-url="{{ route('dashboard.users.destroy', $user->id) }}"
-                                            class="tw-p-1 tw-text-gray-500 hover:tw-text-red-500 tw-transition-colors">
-                                        <svg class="tw-size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            class="p-1 text-gray-500 hover:text-red-500 transition-colors">
+                                        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                         </svg>
                                     </button>
@@ -111,19 +111,19 @@
                     </tbody>
                 </table>
             @else
-                <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-py-8 sm:tw-py-12 tw-px-4">
-                    <svg class="tw-size-12 sm:tw-size-16 tw-text-gray-400 tw-mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex flex-col items-center justify-center py-8 sm:py-12 px-4">
+                    <svg class="size-12 sm:size-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    <p class="tw-text-gray-500 tw-text-base sm:tw-text-lg tw-font-medium tw-text-center">No users found</p>
-                    <p class="tw-text-gray-400 tw-text-xs sm:tw-text-sm tw-mt-1 tw-text-center">Start by adding a new user using the button above</p>
+                    <p class="text-gray-500 text-base sm:text-lg font-medium text-center">No users found</p>
+                    <p class="text-gray-400 text-xs sm:text-sm mt-1 text-center">Start by adding a new user using the button above</p>
                 </div>
             @endif
         </div>
         
         <!-- Pagination -->
         @if($users->count() > 0)
-            <div class="tw-px-4 tw-py-3 tw-border-t tw-border-gray-100">
+            <div class="px-4 py-3 border-t border-gray-100">
                 {{ $users->links('vendor.pagination.custom') }}
             </div>
         @endif
@@ -132,18 +132,18 @@
 
     <!-- Add User Drawer -->
     <x-drawer title="Add New User">
-        <div class="tw-px-3 sm:tw-px-4 tw-py-4 sm:tw-py-6">
+        <div class="px-3 sm:px-4 py-4 sm:py-6">
             <form
                 action="{{ route('dashboard.users.store') }}"
                 method="POST" 
-                class="tw-flex tw-flex-col tw-h-full"
+                class="flex flex-col h-full"
                 id="add-user-form"
                 data-ajax="true"
                 enctype="multipart/form-data"
             >
                 @csrf
                 
-                <div class="tw-flex-1">
+                <div class="flex-1">
                     <x-input 
                         label="Name"
                         name="name"
@@ -195,18 +195,18 @@
                 </div>
 
                 <!-- Footer -->
-                <div class="tw-flex tw-flex-shrink-0 tw-px-4 tw-py-4 tw-border-t tw-border-gray-200">
+                <div class="flex flex-shrink-0 px-4 py-4 border-t border-gray-200">
                     <x-button 
                         variant="secondary"
                         @click="drawerOpen = false"
-                        class="tw-mr-2 tw-bg-slate-100 hover:tw-bg-slate-200"
+                        class="mr-2 bg-slate-100 hover:bg-slate-200"
                     >
                         Cancel
                     </x-button>
                     <x-button 
                         type="submit"
                         variant="primary"
-                        class="tw-flex-1"
+                        class="flex-1"
                         data-ajax="true"
                     >
                         Save User
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let i = 1; i <= pagination.last_page; i++) {
                 html += `
                     <button 
-                        class="tw-px-3 tw-py-1 ${pagination.current_page === i ? 'tw-bg-blue-500 tw-text-white' : 'tw-bg-gray-100'}"
+                        class="px-3 py-1 ${pagination.current_page === i ? 'bg-blue-500 text-white' : 'bg-gray-100'}"
                         onclick="searchUsers(document.querySelector('#search-input').value, ${i})"
                     >
                         ${i}
@@ -266,10 +266,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
             paginationContainer.innerHTML = html;
-            paginationContainer.classList.remove('tw-hidden');
+            paginationContainer.classList.remove('hidden');
         } else {
             // Hide pagination if only 1 page
-            paginationContainer.classList.add('tw-hidden');
+            paginationContainer.classList.add('hidden');
         }
     }
 
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (users.length === 0) {
             usersTableBody.innerHTML = `
                 <tr>
-                    <td colspan="6" class="tw-px-4 tw-py-8 tw-text-center tw-text-gray-500">
+                    <td colspan="6" class="px-4 py-8 text-center text-gray-500">
                         No users found
                     </td>
                 </tr>
@@ -289,38 +289,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         usersTableBody.innerHTML = users.map((user, index) => `
-            <tr class="hover:tw-bg-gray-50">
-                <td class="tw-px-4 tw-py-3">
+            <tr class="hover:bg-gray-50">
+                <td class="px-4 py-3">
                     ${user.id}
                 </td>
-                <td class="tw-px-4 tw-py-3">
-                    <div class="tw-flex tw-items-center tw-gap-3">
-                        <img src="/assets/images/avatars/1.gif" alt="${user.name}" class="tw-size-8 tw-rounded-full">
+                <td class="px-4 py-3">
+                    <div class="flex items-center gap-3">
+                        <img src="/assets/images/avatars/1.gif" alt="${user.name}" class="size-8 rounded-full">
                         <div>
-                            <p class="tw-font-medium tw-text-gray-700">${user.name}</p>
-                            <p class="tw-text-xs tw-text-gray-500">ID: #${user.id}</p>
+                            <p class="font-medium text-gray-700">${user.name}</p>
+                            <p class="text-xs text-gray-500">ID: #${user.id}</p>
                         </div>
                     </div>
                 </td>
-                <td class="tw-px-4 tw-py-3 tw-text-gray-600">${user.email}</td>
-                <td class="tw-px-4 tw-py-3">
-                    <span class="tw-px-2 tw-py-1 tw-text-xs tw-font-medium tw-rounded-full tw-bg-green-100 tw-text-green-700">
+                <td class="px-4 py-3 text-gray-600">${user.email}</td>
+                <td class="px-4 py-3">
+                    <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
                         ${user.status}
                     </span>
                 </td>
-                <td class="tw-px-4 tw-py-3 tw-text-gray-600">
+                <td class="px-4 py-3 text-gray-600">
                     ${new Date(user.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                 </td>
-                <td class="tw-px-4 tw-py-3">
-                    <div class="tw-flex tw-items-center tw-gap-2">
-                        <button class="tw-p-1 tw-text-gray-500 hover:tw-text-gray-700 tw-transition-colors">
-                            <svg class="tw-size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <td class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                        <button class="p-1 text-gray-500 hover:text-gray-700 transition-colors">
+                            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                             </svg>
                         </button>
                         <button data-delete-url="${user.delete_url}"
-                                class="tw-p-1 tw-text-gray-500 hover:tw-text-red-500 tw-transition-colors">
-                            <svg class="tw-size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                class="p-1 text-gray-500 hover:text-red-500 transition-colors">
+                            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                             </svg>
                         </button>
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const usersTableBody = document.getElementById('users-table-body');
         usersTableBody.innerHTML = `
             <tr>
-                <td colspan="6" class="tw-px-4 tw-py-8 tw-text-center tw-text-red-500">
+                <td colspan="6" class="px-4 py-8 text-center text-red-500">
                     Error occurred while searching. Please try again.
                 </td>
             </tr>

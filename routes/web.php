@@ -22,7 +22,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/', 'DashboardController@index')->name('index');
 
-        Route::get('/user-management', 'UserController@index')->name('users.index');
+        Route::get('/user-management', action: 'UserController@index')->name('users.index');
 
         Route::get('/users/create', 'UserController@create')->name('users.create');
 
@@ -45,6 +45,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/settings', 'ProfileController@settings')->name('settings.index');
 
         Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
+    });
+
+    // Data Company
+    Route::prefix('data-company')->name('data-company.')->group(function () {
+        Route::get('/', 'DataCompanyController@index')->name('index');
+        Route::get('/create', 'DataCompanyController@create')->name('create');
+        Route::get('/edit/{id}', 'DataCompanyController@edit')->name('edit');
+        Route::post('/store', 'DataCompanyController@store')->name('store');
+        Route::put('/update/{id}', 'DataCompanyController@update')->name('update');
+        Route::delete('/delete/{id}', 'DataCompanyController@destroy')->name('destroy');
+        Route::get('/show/{id}', 'DataCompanyController@show')->name('show');
     });
 
     Route::get('/', function () {
