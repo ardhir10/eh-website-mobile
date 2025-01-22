@@ -10,7 +10,7 @@
     <div class="flex flex-col h-full">
         <!-- Profile & Company Section -->
         <div class="p-4">
-            <div class="w-full bg-white p-1 px-1.5 rounded-xl flex items-center gap-2 flex flex-col">
+            <div class="w-full bg-white p-1 px-1.5 rounded-xl flex  gap-2 flex flex-col">
                 
                 {{-- Logo --}}
                 <div class="flex items-center gap-3 mb-4 w-full p-1 px-1.5 rounded-xl transition-all duration-300">
@@ -23,15 +23,17 @@
                         class="flex items-center gap-3 mb-4 w-full p-1 px-1.5 rounded-xl transition-all duration-300"
                     >
                         <img 
-                            src="{{ asset('/assets/images/avatars/1.gif') }}" 
+                            src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('/assets/images/avatars/1.gif') }}" 
                             alt="Profile" 
                             class="object-cover aspect-square size-12 rounded-full bg-gray-200"
                         >
                         <div class="flex-1">
-                            <span class="block text-sm text-left text-gray-500">Welcome</span>
-                            <div class="flex items-center gap-1">
-                                <span class="text-sm text-gray-500">back,</span>
-                                <span class="text-sm font-semibold">Lingga!</span>
+                            {{-- <span class="block text-sm text-left text-gray-500">Welcome</span> --}}
+                            <div class="flex flex-col items-center gap-1">
+                                {{-- <span class="text-sm text-gray-500">back,</span> --}}
+                                <span class="text-sm font-semibold">{{ auth()->user()->name }}!</span>
+                                {{-- Role --}}
+                                <span class="text-xs text-gray-500">{{ auth()->user()->role }}</span>
                             </div>
                         </div>
                         <svg class="w-4 h-4 text-gray-500 transition-transform duration-300" 
@@ -52,8 +54,8 @@
                     >
                         <div class="py-1">
                             <div class="px-4 py-3 border-b border-gray-100">
-                                <p class="text-sm font-medium">Alexander Ling</p>
-                                <p class="text-sm text-gray-500">lingga@example.com</p>
+                                <p class="text-sm font-medium">{{ auth()->user()->name }}</p>
+                                <p class="text-sm text-gray-500">{{ auth()->user()->email }}</p>
                             </div>
                             
                             <a 
@@ -94,7 +96,7 @@
 
 
             <!-- Company -->
-            <div class="relative" x-data="{ isOpen: false }">
+            {{-- <div class="relative" x-data="{ isOpen: false }">
                 <button 
                     @click="isOpen = !isOpen"
                     class="w-full bg-white p-1 px-1.5 rounded-xl flex items-center gap-2"
@@ -155,7 +157,9 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+
+            
         </div>
 
         <!-- Navigation -->
@@ -167,7 +171,7 @@
         }">
             <nav class="bg-white rounded-2xl flex-1 p-1.5 space-y-2">
                 <!-- Dashboard -->
-                <div class="relative">
+                {{-- <div class="relative">
                     <button 
                         @click="activeDropdown = (activeDropdown === 'dashboard' ? null : 'dashboard')" 
                         class="w-full flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
@@ -218,7 +222,55 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+
+                <!-- Dashboard -->
+                <a href="{{ route('dashboard.index') }}"
+                   @click="activeDropdown = (activeDropdown === 'dashboard' ? null : 'dashboard')"
+                   class="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
+                   :class="{ 'bg-primary text-white hover:bg-primary hover:text-white': isCurrentRoute('dashboard.index') }"
+                >
+                    <div class="flex items-center">
+                        <svg 
+                            class="size-5 mr-2 flex-shrink-0 transition-transform duration-300 group-hover:rotate-[-15deg] group-focus:rotate-[-15deg]" 
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            :class="{ 'rotate-[-15deg]': isCurrentRoute('monitoring.index') }"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <span 
+                            class="transition-all duration-200 group-hover:translate-x-1 group-focus:translate-x-1"
+                            :class="{ 'translate-x-1': isCurrentRoute('data-company.index') }"
+                        >
+                            Dashboard
+                        </span>
+                    </div>
+                </a>
+
+
+                {{-- Monitoring --}}
+                <a href="{{ route('monitoring.index') }}"
+                   @click="activeDropdown = (activeDropdown === 'monitoring' ? null : 'monitoring')"
+                   class="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
+                   :class="{ 'bg-primary text-white hover:bg-primary hover:text-white': isCurrentRoute('monitoring.index') }"
+                >
+                    <div class="flex items-center">
+                        <svg 
+                            class="size-5 mr-2 flex-shrink-0 transition-transform duration-300 group-hover:rotate-[-15deg] group-focus:rotate-[-15deg]" 
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            :class="{ 'rotate-[-15deg]': isCurrentRoute('monitoring.index') }"
+                        >
+                            <path fill-rule="evenodd" d="M5 3a2 2 0 0 0-2 2v5h18V5a2 2 0 0 0-2-2H5ZM3 14v-2h18v2a2 2 0 0 1-2 2h-6v3h2a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2h2v-3H5a2 2 0 0 1-2-2Z" clip-rule="evenodd"/>
+                          
+                        </svg>
+                        <span 
+                            class="transition-all duration-200 group-hover:translate-x-1 group-focus:translate-x-1"
+                            :class="{ 'translate-x-1': isCurrentRoute('data-company.index') }"
+                        >
+                            Monitoring
+                        </span>
+                    </div>
+                </a>
 
                 <!-- Data Company -->
                 <a href="{{ route('data-company.index') }}"
@@ -243,30 +295,76 @@
                     </div>
                 </a>
 
-                
-
-                <!-- Logout -->
-                <a href="javascript:void(0)"
-                   @click="activeDropdown = (activeDropdown === 'logout' ? null : 'logout')"
-                   class="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
-                   :class="{ 'bg-primary text-white hover:bg-primary hover:text-white': isCurrentRoute('logout') }"
+                {{-- Site Management --}}
+                <a href="{{ route('site-management.index') }}"
+                    @click="activeDropdown = (activeDropdown === 'siteManagement' ? null : 'siteManagement')"
+                    class="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
+                        :class="{ 'bg-primary text-white hover:bg-primary hover:text-white': isCurrentRoute('site-management.index') }"
                 >
                     <div class="flex items-center">
                         <svg 
                             class="size-5 mr-2 flex-shrink-0 transition-transform duration-300 group-hover:rotate-[-15deg] group-focus:rotate-[-15deg]" 
                             fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            :class="{ 'rotate-[-15deg]': isCurrentRoute('logout') }"
+                                :class="{ 'rotate-[-15deg]': isCurrentRoute('site-management.index') }"
                         >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                          
                         </svg>
                         <span 
                             class="transition-all duration-200 group-hover:translate-x-1 group-focus:translate-x-1"
-                            :class="{ 'translate-x-1': isCurrentRoute('logout') }"
+                            :class="{ 'translate-x-1': isCurrentRoute('site-management.index') }"
                         >
-                            Logout
+                            Site Management
                         </span>
                     </div>
                 </a>
+
+
+                <!-- User Management -->
+                <a href="{{ route('user-management.index') }}"
+                   @click="activeDropdown = (activeDropdown === 'userManagement' ? null : 'userManagement')"
+                   class="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
+                   :class="{ 'bg-primary text-white hover:bg-primary hover:text-white': isCurrentRoute('user-management.index') }"
+                >
+                    <div class="flex items-center">
+                        <svg 
+                            class="size-5 mr-2 flex-shrink-0 transition-transform duration-300 group-hover:rotate-[-15deg] group-focus:rotate-[-15deg]" 
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            :class="{ 'rotate-[-15deg]': isCurrentRoute('user-management.index') }"
+                        >
+                            <path fill-rule="evenodd" stroke-width="1.5" d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z" clip-rule="evenodd"/>
+                          
+                        </svg>
+                        <span 
+                            class="transition-all duration-200 group-hover:translate-x-1 group-focus:translate-x-1"
+                            :class="{ 'translate-x-1': isCurrentRoute('user-management.index') }"
+                        >
+                            User Management
+                        </span>
+                    </div>
+                </a>
+
+                
+
+                <!-- Logout -->
+                <form method="POST" action="{{ route('auth.logout') }}" class="w-full">
+                    @csrf
+                    <button type="submit"
+                        class="w-full flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 focus:bg-primary focus:text-white transition-all duration-500 group rounded-xl"
+                    >
+                        <div class="flex items-center">
+                            <svg 
+                                class="size-5 mr-2 flex-shrink-0 transition-transform duration-300 group-hover:rotate-[-15deg] group-focus:rotate-[-15deg]" 
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                            <span class="transition-all duration-200 group-hover:translate-x-1 group-focus:translate-x-1">
+                                Logout
+                            </span>
+                        </div>
+                    </button>
+                </form>
 
                 
             </nav>

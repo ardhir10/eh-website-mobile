@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="p-6" x-data="{ drawerOpen: false, startY: 0, currentHeight: 0, isDragging: false, initialHeight: 0 }">

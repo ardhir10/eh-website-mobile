@@ -15,4 +15,9 @@ class Company extends Model
         'company_address',
         'company_description'
     ];
+
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
 }
