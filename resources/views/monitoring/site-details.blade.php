@@ -329,7 +329,7 @@
             const data = response.data.data;
             
             // Update chart data
-            chart.data.labels = data.map(item => moment(item.datetime_client_formated).format('DD/MM/YY HH:mm'));
+            chart.data.labels = data.map(item => moment(item.datetime_client_formated).format('YYYY-MM-DD HH:mm:ss'));
             
             // Clear existing datasets
             chart.data.datasets = [];
@@ -376,7 +376,7 @@
                 name: 'datetime_client_formated',
                 searchable: true,
                 render: function(data) {
-                    return moment(data).format('DD/MM/YY HH:mm');
+                    return moment(data).format('YYYY-MM-DD HH:mm:ss');
                 }
             },
             { data: 'ph', name: 'ph', searchable: true },
