@@ -92,7 +92,13 @@
         {{-- Title Info --}}
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div class="flex flex-col gap-1">
-                <h1 class="mt-2 text-xl font-semibold text-gray-900">{{ $company->company_name }} - Sites Monitoring</h1>
+                <div class="flex items-center gap-3">
+                    <h1 class="mt-2 text-xl font-semibold text-gray-900">{{ $company->company_name }} - Sites Monitoring</h1>
+                    <div class="flex items-center gap-2 px-3 py-1 rounded-full border" id="connection-status-container">
+                        <div id="connection-status" class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <span id="connection-status-text" class="text-sm font-medium text-red-600">Disconnected</span>
+                    </div>
+                </div>
                 <p class="mt-0.5 text-xs text-gray-600">View detailed monitoring parameters for each site</p>
             </div>
             
@@ -135,7 +141,7 @@
         <!-- Grid View -->
         <div id="grid-view" class="tab-content">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                @foreach($company->sites as $site)
+                @foreach($company->sitesActive as $site)
                     <div class="bg-white rounded-lg shadow-md p-6 site-card" 
                          data-search="{{ strtolower($site->site_name) }} {{ strtolower($site->site_address) }}">
                         <div class="flex items-center justify-between mb-4">
@@ -208,6 +214,8 @@
 @endsection
 
 @push('scripts')
+    <!-- Socket.IO Client -->
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <!-- Add Leaflet Fullscreen JS -->
@@ -237,7 +245,7 @@
             }).addTo(map);
 
             // Add markers for each site
-            const sites = @json($company->sites);
+            const sites = @json($company->sitesActive);
             const markers = [];
             sites.forEach(site => {
                 const marker = L.marker([site.site_latitude || -6.200000, site.site_longitude || 106.816666])
@@ -271,7 +279,7 @@
                             </div>
                         </div>
                         <div class="mt-2 text-right">
-                            <a href="/monitoring/site-details/${site.site_token}" 
+                            <a href="/monitoring/site-details/${site.id}" 
                                class="text-[11px] text-pink-600 hover:text-pink-700 font-medium">
                                 View Details →
                             </a>
@@ -314,36 +322,68 @@
             }
         }
 
-        function getRandomValue(min, max, decimals = 2) {
-            return (Math.random() * (max - min) + min).toFixed(decimals);
-        }
+        // Initialize Socket.IO connection
+        const socket = io("{{ env('WEBSOCKET_SERVER_URL') }}", {
+            transports: ['websocket']
+        });
 
-        function updateValues() {
+        // on connect
+        socket.on('connect', () => {
+            console.log('Socket.IO Connected successfully');
+            const statusIndicator = document.getElementById('connection-status');
+            const statusText = document.getElementById('connection-status-text');
+            const container = document.getElementById('connection-status-container');
+            
+            statusIndicator.classList.remove('bg-red-500');
+            statusIndicator.classList.add('bg-green-500');
+            
+            statusText.classList.remove('text-red-600');
+            statusText.classList.add('text-green-600');
+            statusText.textContent = 'Connected';
+            
+            container.title = 'WebSocket Connected';
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Socket.IO Disconnected');
+            const statusIndicator = document.getElementById('connection-status');
+            const statusText = document.getElementById('connection-status-text');
+            const container = document.getElementById('connection-status-container');
+            
+            statusIndicator.classList.remove('bg-green-500');
+            statusIndicator.classList.add('bg-red-500');
+            
+            statusText.classList.remove('text-green-600');
+            statusText.classList.add('text-red-600');
+            statusText.textContent = 'Disconnected';
+            
+            container.title = 'WebSocket Disconnected';
+        });
+
+        // Listen for monitoring updates
+        socket.on('realtime_values', (message) => {
+            console.log('Received realtime values:', message.data);
+            const data = message.data;  // Extract data from message
+            
+            // Find elements with matching token and update values
             const parameters = {
-                'ph': { min: 0, max: 14, decimals: 1 },
-                'tss': { min: 0, max: 1000, decimals: 2 },
-                'nh3n': { min: 0, max: 100, decimals: 2 },
-                'cod': { min: 0, max: 500, decimals: 2 },
-                'debit': { min: 0, max: 10, decimals: 3 }
+                'ph': data.pH,
+                'tss': data.tss,
+                'nh3n': data.nh3n,
+                'cod': data.cod,
+                'debit': data.debit
             };
 
-            @foreach($company->sites as $site)
-                Object.entries(parameters).forEach(([param, config]) => {
-                    const gridElement = document.getElementById(`${param}-{{ $site->site_token }}`);
-                    const mapElement = document.getElementById(`map-${param}-{{ $site->site_token }}`);
-                    const newValue = getRandomValue(config.min, config.max, config.decimals);
-                    
-                    if (gridElement) gridElement.textContent = newValue;
-                    if (mapElement) mapElement.textContent = newValue;
-                });
-            @endforeach
-        }
+            console.log(parameters);
 
-        // Update values every 1 second
-        setInterval(updateValues, 1000);
-
-        // Initial update
-        updateValues();
+            Object.entries(parameters).forEach(([param, value]) => {
+                const gridElement = document.getElementById(`${param}-${data.token}`);
+                const mapElement = document.getElementById(`map-${param}-${data.token}`);
+                
+                if (gridElement) gridElement.textContent = value;
+                if (mapElement) mapElement.textContent = value;
+            });
+        });
 
         function searchSites() {
             const searchInput = document.getElementById('site-search');

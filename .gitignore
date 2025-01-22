@@ -21,3 +21,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+/middleware/websocket_server/node_modules
+/middleware/mqtt_client/node_modules
+/middleware/testing/node_modules

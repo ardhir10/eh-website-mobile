@@ -1,0 +1,17 @@
+
+1. Running Websocket di /middleware/websocket_server/index.js 
+2. Running MqttClient di /middleware/testing/index.js
+
+
+
+Payload Mqtt
+{
+  "pH": "7.4300",
+  "tss": "60.3100",
+  "nh3n": "0",
+  "cod": "152.7500",
+  "debit": "4400.0000",
+  "totalizer": "1000001",
+  "datetime": 1728374640,
+  "token":"E8rkrgQxBwmHp3LOJt3kfOHDhStiXYwB"
+}

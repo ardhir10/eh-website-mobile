@@ -8,7 +8,9 @@
     <div id="pageLoader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
         <div class="flex flex-col items-center gap-4">
             {{-- <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div> --}}
-            <div class="loader"></div>
+            <div class="loader">
+                <img src="{{ asset('assets/logo/logo-eh.png') }}" alt="Loading...">
+            </div>
             <p class="text-xl font-sans loading-text">Please wait<span class="dots"></span></p>
         </div>
     </div>

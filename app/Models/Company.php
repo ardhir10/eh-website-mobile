@@ -20,4 +20,9 @@ class Company extends Model
     {
         return $this->hasMany(Site::class);
     }
+
+    public function sitesActive ()
+    {
+        return $this->hasMany(Site::class)->where('site_status', 'true');
+    }
 }
