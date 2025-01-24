@@ -4,6 +4,7 @@
 
 
 
+===== REALTIME ==========
 Payload Mqtt
 {
   "pH": "7.4300",
@@ -15,3 +16,19 @@ Payload Mqtt
   "datetime": 1728374640,
   "token":"E8rkrgQxBwmHp3LOJt3kfOHDhStiXYwB"
 }
+
+===== HISTORICAL ==========
+Endpoint: localhost:8000/api/api-log (POST)
+Payload API
+{
+    "pH": "7.6661",
+    "tss": "135.0268",
+    "nh3n": "2.0832",
+    "cod": "206.1440",
+    "debit": "4084.1957",
+    "totalizer": "1526124",
+    "datetime": 1737561071,
+    "token": "wOoFD2OeWwgXAeLgoKalw24rcnpg4u6Y",
+    "status_send": "success"
+}
+
