@@ -52,6 +52,10 @@ class User extends Authenticatable
         'status',
         'company_id',
         'avatar',
+        'token',
+        'refresh_token',
+        'token_expired_at',
+        'refresh_token_expired_at',
     ];
 
     /**

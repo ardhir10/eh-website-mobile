@@ -90,4 +90,27 @@ class SiteManagementController extends Controller
             ->route('site-management.index')
             ->with('success', 'Site deleted successfully');
     }
+
+    public function getSitesByCompanyId($companyId)
+    {
+        $sites = Site::where('company_id', $companyId)
+            ->where('site_status', true)
+            ->select([
+                'id',
+                'site_name',
+                'site_address',
+                'site_phone',
+                'site_email',
+                'site_longitude',
+                'site_latitude',
+                'site_visibility',
+                'site_token'
+            ])
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $sites
+        ]);
+    }
 }

@@ -362,7 +362,7 @@
 
         // Listen for monitoring updates
         socket.on('realtime_values', (message) => {
-            console.log('Received realtime values:', message.data);
+            console.log('Received realtime values:', message);
             const data = message.data;  // Extract data from message
             
             // Find elements with matching token and update values
