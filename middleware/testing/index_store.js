@@ -6,7 +6,7 @@ async function insertTestData(
     endDate, 
     endpoint = 'http://localhost:8000/api/api-log', 
     minuteInterval = 2,
-    token = "wOoFD2OeWwgXAeLgoKalw24rcnpg4u6Y"
+    token = "2Dxvg0rk5Q0D8ilM1cROvXHp71ZDCfG2"
 ) {
     try {
         const start = moment(startDate);
@@ -43,11 +43,11 @@ async function insertTestData(
 
 // Custom endpoint, interval, and token
 insertTestData(
-    '2025-01-10 00:00:00', 
-    '2025-01-15 00:00:00',
+    '2025-01-01 00:00:00', 
+    '2025-01-30 00:00:00',
     'http://localhost:8000/api/api-log',
     2,
-    'E8rkrgQxBwmHp3LOJt3kfOHDhStiXYwB'
+    '2Dxvg0rk5Q0D8ilM1cROvXHp71ZDCfG2'
 );
 
 module.exports = { insertTestData };

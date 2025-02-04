@@ -324,7 +324,9 @@
 
         // Initialize Socket.IO connection
         const socket = io("{{ env('WEBSOCKET_SERVER_URL') }}", {
-            transports: ['websocket']
+            transports: ['websocket'],
+            secure: true,
+            rejectUnauthorized: false
         });
 
         // on connect

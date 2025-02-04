@@ -5,8 +5,10 @@ const client = mqtt.connect('mqtt://localhost:1883'); // Adjust MQTT broker URL 
 const tokens = [
     'E8rkrgQxBwmHp3LOJt3kfOHDhStiXYwB',
     'wOoFD2OeWwgXAeLgoKalw24rcnpg4u6Y',
-    '3sDl5fDHPYtW5Jdq1iQy2pZ8b9QSlhUB'
+    '3sDl5fDHPYtW5Jdq1iQy2pZ8b9QSlhUB',
     // Add more tokens as needed
+    '2Dxvg0rk5Q0D8ilM1cROvXHp71ZDCfG2',
+    'vPaERpmoY1K1OqY5xzkSU5LY3ipeIdT2'
 ];
 
 // Function to generate random number within range

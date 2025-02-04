@@ -102,7 +102,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     });
 
     Route::get('/', function () {
-        return view('welcome');
+        // return to dashboard
+        return redirect()->route('dashboard.index');
     });
 });
 
