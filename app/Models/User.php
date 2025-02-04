@@ -25,7 +25,7 @@ class User extends Authenticatable
     {
         return [
             self::ROLE_SUPER_ADMIN => 'Super Admin',
-            // self::ROLE_ADMIN_COMPANY => 'Admin Company',
+            self::ROLE_ADMIN_COMPANY => 'Admin Company',
             self::ROLE_OPERATOR => 'Operator',
         ];
     }

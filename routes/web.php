@@ -99,6 +99,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/show/{id?}', 'MonitoringController@show')->name('show');
         // site details
         Route::get('/site-details/{id}', 'MonitoringController@siteDetails')->name('site-details');
+
+        // Alarm Settings
+        Route::prefix('alarm-settings')->name('alarm-settings.')->group(function () {
+            Route::get('/', 'AlarmSettingController@index')->name('index');
+            Route::post('/', 'AlarmSettingController@store')->name('store');
+            Route::put('/{id}', 'AlarmSettingController@update')->name('update');
+            Route::delete('/{id}', 'AlarmSettingController@destroy')->name('destroy');
+            Route::get('/{id}', 'AlarmSettingController@show')->name('show');
+        });
     });
 
     Route::get('/', function () {
