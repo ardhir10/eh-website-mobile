@@ -85,6 +85,9 @@
 
 <!-- Add Leaflet Fullscreen CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.4.0/Control.FullScreen.css" />
+
+<!-- Add Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endpush
 @section('content')
     <div class="flex flex-col gap-4 w-full">
@@ -160,34 +163,34 @@
                             <!-- pH Parameter -->
                             <div class="flex items-center gap-2">
                                 <span class="font-medium text-gray-500">pH:</span>
-                                <span class="font-semibold" id="ph-{{ $site->site_token }}">{{ $site->latest_monitoring?->ph ?? 'N/A' }}</span>
+                                <span class="font-semibold transition-colors" id="ph-{{ $site->site_token }}">{{ $site->latest_monitoring?->ph ?? 'N/A' }}</span>
                             </div>
 
                             <!-- TSS Parameter -->
                             <div class="flex items-center gap-2">
                                 <span class="font-medium text-gray-500">TSS:</span>
-                                <span class="font-semibold" id="tss-{{ $site->site_token }}">{{ $site->latest_monitoring?->tss ?? 'N/A' }}</span>
+                                <span class="font-semibold transition-colors" id="tss-{{ $site->site_token }}">{{ $site->latest_monitoring?->tss ?? 'N/A' }}</span>
                                 <span>mg/L</span>
                             </div>
 
                             <!-- NH3N Parameter -->
                             <div class="flex items-center gap-2">
                                 <span class="font-medium text-gray-500">NH3N:</span>
-                                <span class="font-semibold" id="nh3n-{{ $site->site_token }}">{{ $site->latest_monitoring?->nh3n ?? 'N/A' }}</span>
+                                <span class="font-semibold transition-colors" id="nh3n-{{ $site->site_token }}">{{ $site->latest_monitoring?->nh3n ?? 'N/A' }}</span>
                                 <span>mg/L</span>
                             </div>
 
                             <!-- COD Parameter -->
                             <div class="flex items-center gap-2">
                                 <span class="font-medium text-gray-500">COD:</span>
-                                <span class="font-semibold" id="cod-{{ $site->site_token }}">{{ $site->latest_monitoring?->cod ?? 'N/A' }}</span>
+                                <span class="font-semibold transition-colors" id="cod-{{ $site->site_token }}">{{ $site->latest_monitoring?->cod ?? 'N/A' }}</span>
                                 <span>mg/L</span>
                             </div>
 
                             <!-- Debit Parameter -->
                             <div class="flex items-center gap-2">
                                 <span class="font-medium text-gray-500">Debit:</span>
-                                <span class="font-semibold" id="debit-{{ $site->site_token }}">{{ $site->latest_monitoring?->debit ?? 'N/A' }}</span>
+                                <span class="font-semibold transition-colors" id="debit-{{ $site->site_token }}">{{ $site->latest_monitoring?->debit ?? 'N/A' }}</span>
                                 <span>m³/s</span>
                             </div>
                         </div>
@@ -220,6 +223,9 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <!-- Add Leaflet Fullscreen JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.4.0/Control.FullScreen.min.js" defer></script>
+    
+    <!-- Add Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     
     <script>
         // Inisialisasi map hanya ketika tab map aktif
@@ -258,23 +264,23 @@
                             <div class="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[11px]">
                                 <div class="flex items-center justify-between">
                                     <span class="text-gray-600">pH:</span>
-                                    <span class="font-medium" id="map-ph-${site.site_token}">${site.latest_monitoring?.ph || 'N/A'}</span>
+                                    <span class="font-medium transition-colors" id="map-ph-${site.site_token}">${site.latest_monitoring?.ph || 'N/A'}</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-gray-600">TSS:</span>
-                                    <span class="font-medium"><span id="map-tss-${site.site_token}">${site.latest_monitoring?.tss || 'N/A'}</span> mg/L</span>
+                                    <span class="font-medium transition-colors"><span id="map-tss-${site.site_token}">${site.latest_monitoring?.tss || 'N/A'}</span> mg/L</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-gray-600">NH3N:</span>
-                                    <span class="font-medium"><span id="map-nh3n-${site.site_token}">${site.latest_monitoring?.nh3n || 'N/A'}</span> mg/L</span>
+                                    <span class="font-medium transition-colors"><span id="map-nh3n-${site.site_token}">${site.latest_monitoring?.nh3n || 'N/A'}</span> mg/L</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-gray-600">COD:</span>
-                                    <span class="font-medium"><span id="map-cod-${site.site_token}">${site.latest_monitoring?.cod || 'N/A'}</span> mg/L</span>
+                                    <span class="font-medium transition-colors"><span id="map-cod-${site.site_token}">${site.latest_monitoring?.cod || 'N/A'}</span> mg/L</span>
                                 </div>
                                 <div class="flex items-center justify-between col-span-2">
                                     <span class="text-gray-600">Debit:</span>
-                                    <span class="font-medium"><span id="map-debit-${site.site_token}">${site.latest_monitoring?.debit || 'N/A'}</span> m³/s</span>
+                                    <span class="font-medium transition-colors"><span id="map-debit-${site.site_token}">${site.latest_monitoring?.debit || 'N/A'}</span> m³/s</span>
                                 </div>
                             </div>
                         </div>
@@ -362,12 +368,47 @@
             container.title = 'WebSocket Disconnected';
         });
 
-        // Listen for monitoring updates
+        // Change from Map to Array
+        let activeAlarms = []; // Store active alarms globally
+
+        // Update the realtime_alarm_active handler
+        socket.on('realtime_alarm_active', (alarms) => {
+            console.log('Received active alarms:', alarms);
+            activeAlarms = alarms; // Now directly storing the array
+            updateParameterColors();
+        });
+
+        // Update the color update function to work with array
+        function updateParameterColors() {
+            // First reset all parameters to default color
+            document.querySelectorAll('[id^="ph-"],[id^="tss-"],[id^="nh3n-"],[id^="cod-"],[id^="debit-"],[id^="map-"]').forEach(element => {
+                element.classList.remove('text-red-600');
+            });
+
+            // Then apply red color to active alarms
+            activeAlarms.forEach(alarm => {
+                const parameter = alarm.parameter;
+                const siteToken = alarm.site_token;
+                
+                // Update grid view
+                const gridElement = document.getElementById(`${parameter}-${siteToken}`);
+                if (gridElement) {
+                    gridElement.classList.add('text-red-600');
+                }
+                
+                // Update map view
+                const mapElement = document.getElementById(`map-${parameter}-${siteToken}`);
+                if (mapElement) {
+                    mapElement.classList.add('text-red-600');
+                }
+            });
+        }
+
+        // Modify the realtime_values handler to maintain color states
         socket.on('realtime_values', (message) => {
             console.log('Received realtime values:', message);
-            const data = message.data;  // Extract data from message
+            const data = message.data;
             
-            // Find elements with matching token and update values
             const parameters = {
                 'ph': data.pH,
                 'tss': data.tss,
@@ -376,14 +417,63 @@
                 'debit': data.debit
             };
 
-            console.log(parameters);
-
             Object.entries(parameters).forEach(([param, value]) => {
                 const gridElement = document.getElementById(`${param}-${data.token}`);
                 const mapElement = document.getElementById(`map-${param}-${data.token}`);
                 
-                if (gridElement) gridElement.textContent = value;
-                if (mapElement) mapElement.textContent = value;
+                if (gridElement) {
+                    gridElement.textContent = value;
+                    // Reset color
+                    gridElement.classList.remove('text-red-600');
+                }
+                if (mapElement) {
+                    mapElement.textContent = value;
+                    // Reset color
+                    mapElement.classList.remove('text-red-600');
+                }
+            });
+            
+            // Reapply active alarm colors
+            updateParameterColors();
+        });
+
+        // Configure Toastr
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "timeOut": "8000",
+            "extendedTimeOut": "2000"
+        };
+
+        // Update the realtime_alarm_notification handler
+        socket.on('realtime_alarm_notification', (message) => {
+            console.log('Received realtime alarm notification:', message);
+            
+            message.forEach(alarm => {
+                const title = `${alarm.site_name} - ${alarm.parameter.toUpperCase()}`;
+                const content = `
+                    <div class="text-sm">
+                        <p class="font-medium">${alarm.description}</p>
+                        <p class="text-xs mt-1">Current value: ${alarm.value}</p>
+                    </div>
+                `;
+                
+                switch(alarm.status.toLowerCase()) {
+                    case 'alarm':
+                        toastr.error(content, title);
+                        break;
+                    case 'warning':
+                        toastr.warning(content, title);
+                        break;
+                    case 'normal':
+                        toastr.success(content, title);
+                        break;
+                    default:
+                        toastr.info(content, title);
+                }
             });
         });
 

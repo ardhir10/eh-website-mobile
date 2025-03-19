@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteManagementController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\AlarmSettingController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,3 +24,6 @@ Route::get('/get-site-by-company-id/{companyId}', [SiteManagementController::cla
 
 // Login
 Route::post('login', action: [AuthenticationController::class, 'loginMobile']);
+
+// Get Alarm Settings
+Route::get('alarm-settings', [AlarmSettingController::class, 'getAlarmSettings']);

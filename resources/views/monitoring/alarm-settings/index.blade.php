@@ -39,7 +39,7 @@
                             @foreach($alarmSettings as $alarm)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $alarm->site->site_name }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ strtoupper($alarm->parameter) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $alarm->parameter }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $alarm->formula }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $alarm->set_point }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -144,7 +144,7 @@ function openAddModal() {
 }
 
 function openEditModal(alarmId) {
-    fetch(`/monitoring/alarm-settings/${alarmId}`)
+    fetch("{{ route('monitoring.alarm-settings.show', '') }}/" + alarmId)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -153,7 +153,7 @@ function openEditModal(alarmId) {
         })
         .then(data => {
             const form = document.getElementById('alarmForm');
-            form.action = `/monitoring/alarm-settings/${alarmId}`;
+            form.action = "{{ route('monitoring.alarm-settings.update', '') }}/" + alarmId;
             document.getElementById('methodField').innerHTML = '@method("PUT")';
             document.getElementById('modalTitle').textContent = 'Edit Alarm Setting';
             

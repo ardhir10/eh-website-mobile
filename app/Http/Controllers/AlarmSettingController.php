@@ -97,4 +97,24 @@ class AlarmSettingController extends Controller
         return redirect()->route('monitoring.alarm-settings.index')
             ->with('success', 'Alarm setting deleted successfully.');
     }
+
+    public function getAlarmSettings()
+    {
+        try {
+            $alarmSettings = AlarmSetting::with('site')
+                ->where('status', true)
+                ->get()
+                ;
+
+            return response()->json([
+                'success' => true,
+                'data' => $alarmSettings
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch alarm settings'
+            ], 500);
+        }
+    }
 }

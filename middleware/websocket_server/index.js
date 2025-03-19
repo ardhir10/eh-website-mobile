@@ -2,6 +2,7 @@ const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 require('dotenv').config({ path: '../../.env' });
+const { checkThresholds } = require('./alarm_threshold');
 
 const app = express();
 const httpServer = createServer(app);
@@ -27,11 +28,21 @@ io.on('connection', (socket) => {
     io.emit('message', data);
   });
 
-  // Add realtime values handler
+  // Modified realtime values handler with alarm checking
   socket.on('realtime_values', (data) => {
     console.log('Received realtime values:', data);
-    // Broadcast realtime values to all clients
-    io.emit('realtime_values', data);
+    
+    // Check for alarms
+    const alarmStatus = checkThresholds(data,io);
+    // Broadcast realtime values and alarm status to all clients
+    io.emit('realtime_values', {
+      ...data
+    });
+
+    // If there are alarms, emit a separate alarm event
+    if (alarmStatus.hasAlarms) {
+      io.emit('alarms', alarmStatus);
+    }
   });
 });
 
